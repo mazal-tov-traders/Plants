@@ -1,0 +1,653 @@
+@import '_vars';
+@import '_global';
+@import '_fonts';
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --index: calc(100vw)
+}
+
+:root {
+  --gradient: linear-gradient(to right, #2AF598, #009EFD);
+}
+
+
+//Start HEADER
+.header {
+  width: 100vw;
+  height: calc(var(--index) *0.69);
+  background: url(../images/bg.jpg) 100% / 100%;
+  background-repeat: no-repeat; // уберает повтарение картинки
+  // background-size: cover; // позволяет занят все пространство
+  background-position: top;
+  position: relative;
+  padding-top: 64px; // используем секту 8 пиксельную. число кратно множится на 2
+  // background-size: calc(var(--index) *3);
+
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0; // низ картинки разміваем белым цвет, делаем плавный переход
+    bottom: 0;
+    height: 10%;
+    background: linear-gradient(to bottom, transparent, #fff);
+  }
+
+  &__top-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px; // зается отступ между єлементов ФЛЕКС БОКСОВ
+    justify-content: space-between;
+    margin-bottom: 82px;
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 68px;
+
+    .header__menu-link:hover,
+    .header__menu-link.active {
+
+      font-weight: 500;
+      background: var(--gradient); // используем переменную var  что бы подставить градиент
+      background-clip: text; // обрезает бєкграунт по тексту
+      -webkit-background-clip: text; //ставим прєфикс вєбкит, так как не у всех браузерах поддерживается жто свойство
+      -webkit-text-fill-color: transparent; // делаем текст прозрачным 
+
+    }
+  }
+
+  &__menu-link {
+    font-weight: 400;
+    font-size: 24px;
+
+  }
+
+  &__cart {
+    font-size: 36px;
+    color: #fff;
+    position: relative;
+  }
+
+  &__cart-count {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2d3949;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background: var(--gradient);
+    display: grid; //делаем его сеткой
+    align-items: center;
+    justify-items: center; //выравнивание ячейки сетки по горизонтали
+    position: absolute;
+    top: 1px;
+    right: -6px;
+  }
+}
+
+
+.header {
+  color: #fff;
+
+  &__title {
+    font-size: 82px;
+    // font-size: calc(var(--index) *3);
+    font-weight: 700;
+    text-align: center;
+    max-width: 1128px;
+    margin: 0 auto;
+    margin-bottom: 24px;
+  }
+
+  &__description {
+    font-size: 24px;
+    text-align: center;
+    max-width: 582px;
+    margin: 0 auto 42px;
+  }
+}
+
+.input,
+.input__down {
+  width: 463px;
+  height: 71px;
+  padding: 10px 12px 10px 30px;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.2); //задаем цвет с альфо каналом. делаем прозрачность 20%
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+
+  input,
+  .input__down {
+    background: transparent; // делаем прозрачный фон
+    border: none;
+    color: #fff;
+    outline: none; //отключает внешнюю обводку у импута при фокусе
+
+    ::placeholder {
+      color: blue;
+    }
+  }
+
+  &__btn {
+    background: var(--gradient);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: grid; //делаем бтн сеточьной что бы можно было отцентрировать 
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  input::placeholder {
+    color: #fff;
+  }
+
+}
+
+
+
+.tooltip {
+  position: relative;
+  width: var(--size);
+  --size: 54px; // локальная переменная
+
+  &__popup {
+    opacity: 0; // полностью скрівает єтот блок
+    position: absolute;
+    top: -200%;
+    left: 50%;
+    transform: translateX(-50%); // центрирует позишн по центру даже при изменении контента внутри
+    overflow: hidden; // єто значение скроет все что выходит за границы родите
+    border: 1px solid #fff;
+    padding: 20px;
+    border-radius: 24px;
+    font-weight: 700;
+    transition: all 0.3s ease-in-out; // заммедление со значением плавный вход плавный выход 
+
+    strong {
+      font-size: 32px;
+    }
+
+    span {
+      font-size: 14px;
+      white-space: nowrap; // позволяет не переносить на вторую строчку
+    }
+
+    div {
+      position: absolute;
+      top: 0;
+      right: 0; // прешлось заполнить бокс таким образом, через with100% i hight 100% не хотело заливать бэкграунд
+      bottom: 0;
+      left: 0;
+      background-color: rgba(255, 255, 255, 0.2); //прозрачность 20%
+      filter: blur(4px); // размытие
+    }
+  }
+
+  &__circle {
+
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+    overflow: hidden; // єто значение скроет все что выходит за границы родите
+    border: 1px solid #fff;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+      --size: 16px;
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: var(--size);
+      height: var(--size);
+      border-radius: var(--size);
+      background-color: #fff;
+    }
+
+    div {
+      width: 100%; // создали дополнительный див и кинули размытие на него, так лучше
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.2); //прозрачность 20%
+      filter: blur(4px); // размытие
+    }
+
+    &:hover+.tooltip__popup {
+      opacity: 1; // + значит что при наведении соседнего єлемента будет задоно значение
+    }
+
+  }
+}
+
+.tooltip.tooltip_1 {
+  position: absolute;
+  right: 9%;
+  top: 55%;
+}
+
+.tooltip.tooltip_2 {
+  position: absolute;
+  left: 6%;
+  top: 39%;
+}
+
+.tooltip.tooltip_3 {
+  position: absolute;
+  left: 11%;
+  top: 54%;
+}
+
+// END HEADER
+//START benefits
+
+
+.benefits {
+  height: 300px;
+  padding: 100px 0 140px;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 68px;
+
+    i {
+      font-size: 72px;
+      background: var(--gradient); // используем переменную var  что бы подставить градиент
+      background-clip: text; // обрезает бєкграунт по тексту
+      -webkit-background-clip: text; //ставим прєфикс вєбкит, так как не у всех браузерах поддерживается жто свойство
+      -webkit-text-fill-color: transparent; // делаем текст прозрачным 
+
+    }
+
+    div {
+      display: grid; // выстраивает єлементы друг над другом
+      grid-gap: 10px;
+    }
+
+    strong {
+      font-size: 32px;
+      font-weight: 500;
+    }
+
+    span {
+      font-size: 20px;
+      color: #828282;
+    }
+  }
+}
+
+.benefits .container {
+  //указав контєйнек конкретно в рамках єтой секции мы не нарушим структуру  остальных блоков. сделано для того что бы не создавать отдельный бокс обертку
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+// END benefits
+// START BEST
+
+.best {
+
+  margin-bottom: 120px;
+  padding-top: 205px;
+
+  &__wrapper {
+    display: grid; // структура колонок
+    grid-template-columns: 1fr repeat(3, 329px); //задаем кол. колонок. 1кол. одной фракцией, остальные заумут по 18% остатка
+    grid-gap: 32px;
+    // display: flex;
+    // justify-content: space-between;
+    height: 400px;
+    column-gap: 20px;
+    row-gap: 40px;
+
+    &_info {
+      font-weight: 500;
+      max-width: 365px;
+    }
+
+    &_info-title {
+      font-size: 64px;
+      font-weight: 500;
+      margin-bottom: 42px;
+    }
+
+    &_info-more {
+      color: #4f4f4f;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px; // делаем отступ для стрелки
+    }
+
+  }
+}
+
+
+
+.best {
+  padding-top: 205px;
+
+  &__wrapper {
+
+
+    &_product {
+      border-radius: 50px;
+      background: #C1D0E4;
+      display: grid;
+
+      width: 329px;
+      height: 509px;
+
+    }
+
+    &_product-img {
+      width: 100%; // указіваем 100% ширині картинки что бы она не выходила за границы своего блока
+      position: relative;
+      top: -115px;
+      margin-bottom: -117px;
+    }
+
+    &_product-info {
+      border-radius: 50px;
+      background: #fff;
+      padding: 26px 38px;
+      box-shadow: 0 4px 30px rgba(221, 218, 218, 0.25);
+      display: flex;
+      flex-direction: column; //возвращает в структуру колонок
+    }
+
+    &_product-title {
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    &_product-rating {
+      font-size: 18px;
+      color: #F2C94C;
+    }
+
+    &_product-bottom {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &_product-price {
+      font-size: 32px;
+      font-weight: 500;
+    }
+
+    &_product-add {
+      font-size: 58px;
+      background: var(--gradient); // используем переменную var  что бы подставить градиент
+      background-clip: text; // обрезает бєкграунт по тексту
+      -webkit-background-clip: text; //ставим прєфикс вєбкит, так как не у всех браузерах поддерживается жто свойство
+      -webkit-text-fill-color: transparent; // делаем текст прозрачным 
+    }
+  }
+}
+
+
+//END BEST
+//START interior
+
+.interior {
+  padding: 30px 0 40px 0;
+  margin-top: 200px;
+  margin-bottom: 200px;
+
+
+  &__title {
+    font-size: 64px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 27px;
+  }
+
+  &__text {
+    color: #4F4F4F;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 82px;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 38vw 24vw;
+    grid-gap: 32px;
+  }
+}
+
+
+.block {
+  background: url(../images/brown.jpg) center / 120% 100%;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden; //обрезаем все что находится за границами картинки
+  color: #fff;
+  font-size: 64px;
+  font-weight: 600;
+  display: grid; // выравниваем текст по центру
+  align-items: center;
+  justify-items: center;
+  // текст внутрений єлемент  и тоже затемняется, так как у него по умолчанию стоит позишн статик, а у нашего єлемента :after стоит абсолют и значение индекса выше, решение поставит блоку З-индекс или :after поменять на :before и указать Relative  для внутренего контента
+  transition: all 1s ease-in-out; // ставим транзишн что бы сделать єфек для картинки 
+}
+
+.block:hover {
+  background-size: 130% 110%;
+}
+
+.block::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.block:hover::before {
+  opacity: 0.3;
+}
+
+.block>* {
+  position: relative; //  это обозначает что для внутренего контента  будет работать позишн  релейтив
+  opacity: 0; // єтим значением скрыли тек а так же все внутрение элементы
+  transition: all 0.7s ease-in-out;
+}
+
+.block:hover>* {
+  opacity: 1; //  этим значениме при ховере показываем все внутрение элементы
+}
+
+.block:nth-child(2) {
+  background: url(../images/unsplash.jpg) center / 120% 100%;
+  grid-row: 1 / -1;
+  grid-column: 2;
+}
+
+.block:nth-child(2):hover {
+  background-size: 130% 110%;
+}
+
+.block:nth-child(3) {
+  background: url(../images/arrangement.jpg) center / 120% 100%;
+
+}
+
+.block:nth-child(3):hover {
+  background-size: 130% 110%;
+}
+
+//END interior
+//START HOW
+
+.how .container {
+  display: grid;
+  grid-template-columns: 1fr 656px;
+  grid-gap: 10vw;
+}
+
+.how {
+  margin-bottom: 220px;
+
+  &__info {}
+
+  &__info-title {
+    font-size: 64px;
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+
+  &__info-text {
+    font-size: 24px;
+    color: #4F4F4F;
+    margin-bottom: 82px;
+  }
+
+  &__info-list {
+    &_box {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+
+      i {
+        align-self: flex-start; // выставляем иконку по верхняму краю
+        font-size: 68px;
+        background: var(--gradient); // используем переменную var  что бы подставить градиент
+        background-clip: text; // обрезает бєкграунт по тексту
+        -webkit-background-clip: text; //ставим прєфикс вєбкит, так как не у всех браузерах поддерживается жто свойство
+        -webkit-text-fill-color: transparent; // делаем текст прозрачным
+      }
+    }
+
+    &_wrapper {
+      display: grid; // выстраивает єлементы друг над другом
+      grid-gap: 10px;
+
+      strong {
+        font-size: 32px;
+        font-weight: 500;
+      }
+
+      span {
+        font-size: 20px;
+        color: #828282;
+      }
+    }
+  }
+}
+
+.how__img {
+  height: 618px;
+  background: url(../images/how.jpg) center / cover;
+  border-radius: 50px;
+  margin: 101px 0 58px;
+}
+
+// END HOW
+// START newslatter
+.newslatter {
+  padding: 120px 0;
+  background: linear-gradient(to right, #566270, #283444);
+}
+
+.newslatter {
+  color: #fff;
+
+  &__top {
+    display: flex;
+    gap: 25px;
+
+  }
+
+  &__subscribe {
+    // margin-right: 86px;
+  }
+
+  &__subscribe-title {
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    margin-left: 10px;
+  }
+
+  &__info {
+    min-width: 135px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  &__list {
+    display: grid;
+    grid-gap: 16px;
+  }
+
+  &__copyright {
+    text-align: center;
+  }
+}
+
+.newslatter hr {
+  margin: 52px 0;
+}
+
+.newslatter .input {
+  &__btn {
+    color: #fff;
+    width: 150px;
+    height: 50px;
+    border-radius: 50px;
+  }
+}
+
+.input__knop {
+  background: var(--gradient);
+
+  display: grid; //делаем бтн сеточьной что бы можно было отцентрировать 
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  width: 118px;
+  height: 62px;
+  border-radius: 29px;
+
+  
+}
+.newslatter-lost {
+  max-width: 345px
+}
+
+// END newslatter
+@import '_media';

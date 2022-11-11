@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'icons';
+  src:  url('fonts/icons.eot?3dodc7');
+  src:  url('fonts/icons.eot?3dodc7#iefix') format('embedded-opentype'),
+    url('fonts/icons.ttf?3dodc7') format('truetype'),
+    url('fonts/icons.woff?3dodc7') format('woff'),
+    url('fonts/icons.svg?3dodc7#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ic_star:before {
+  content: "\e90b";
+}
+.ic_box:before {
+  content: "\e901";
+}
+.ic_temp:before {
+  content: "\e909";
+}
+.ic_flowe:before {
+  content: "\e907";
+}
+.ic_draw:before {
+  content: "\e906";
+}
+.ic_sun:before {
+  content: "\e904";
+}
+.ic_search:before {
+  content: "\e903";
+}
+.ic_arow-right:before {
+  content: "\e900";
+  color: #4f4f4f;
+}
+.ic_cart:before {
+  content: "\e902";
+}
+.ic_plus:before {
+  content: "\e905";
+}
+.ic_support:before {
+  content: "\e908";
+}
+.ic_wallet:before {
+  content: "\e90a";
+}
